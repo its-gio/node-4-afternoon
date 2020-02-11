@@ -2,6 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const session = require("express-session");
 const app = express();
+const checkForSession = require("./middlewares/checkForSession")
 const { SERVER_PORT, SESSION_SECRET } = process.env
 
 app
@@ -16,5 +17,6 @@ app
       }
     })
   )
+  .use(checkForSession())
 
 app.listen(SERVER_PORT, () => console.log(`Rodger Rodger on Port ${SERVER_PORT}`));
