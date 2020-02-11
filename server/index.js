@@ -6,6 +6,7 @@ const { SERVER_PORT, SESSION_SECRET } = process.env
 
 const { login, register, signout, getUser } = require("./controllers/authController");
 const { addItems, deleteItem, checkout } = require("./controllers/cartController");
+const search = require("./controllers/searchController")
 const checkForSession = require("./middlewares/checkForSession")
 const read = require("./controllers/swagController")
 
@@ -30,6 +31,7 @@ app
   .post("/api/cart/checkout", checkout)
   .post("/api/cart/:id", addItems)
   .delete("/api/cart/:id", deleteItem)
+  .get("/api/search", search)
 
 
 app.listen(SERVER_PORT, () => console.log(`Rodger Rodger on Port ${SERVER_PORT}`));
