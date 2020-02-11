@@ -5,6 +5,7 @@ const app = express();
 const { SERVER_PORT, SESSION_SECRET } = process.env
 
 const { login, register, signout, getUser } = require("./controllers/authController");
+const { addItems, deleteItem, checkout } = require("./controllers/cartController");
 const checkForSession = require("./middlewares/checkForSession")
 const read = require("./controllers/swagController")
 
@@ -26,6 +27,9 @@ app
   .post("/api/register", register)
   .post("/api/signout", signout)
   .get("/api/user", getUser)
+  .post("/api/cart/checkout", checkout)
+  .post("/api/cart/:id", addItems)
+  .delete("/api/cart/:id", deleteItem)
 
 
 app.listen(SERVER_PORT, () => console.log(`Rodger Rodger on Port ${SERVER_PORT}`));
